@@ -8,6 +8,7 @@ use Dex\Laravel\Space\Providers\SpaceServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Laravel\Fortify\FortifyServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Workbench\Dex\Laravel\Space\App\Providers\WorkbenchServiceProvider;
 
@@ -31,6 +32,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
+            FortifyServiceProvider::class,
             SpaceServiceProvider::class,
             WorkbenchServiceProvider::class,
         ];

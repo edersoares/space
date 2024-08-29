@@ -2,7 +2,33 @@
 
 declare(strict_types=1);
 
+use Dex\Laravel\Space\Http\Controllers\MeController;
 use Dex\Laravel\Space\Http\Controllers\SpaceController;
+use Dex\Laravel\Space\Http\Middleware\AcceptJson;
 use Illuminate\Support\Facades\Route;
 
 Route::get('space', SpaceController::class);
+
+Route::group([
+    'middleware' => config('fortify.middleware'),
+    'prefix' => config('fortify.prefix'),
+], function () {
+    Route::group([
+        'middleware' => AcceptJson::class,
+    ], function () {
+        // Initialize
+        Route::get('initialize', function () {
+            return config('space.initialize');
+        });
+
+        // CSRF endpoint (Sanctum style)
+        Route::get('csrf', function () {
+            return response()->noContent();
+        });
+
+        // User info endpoint (API style)
+        Route::middleware([
+            config('fortify.auth_middleware') . ':' . config('fortify.guard'),
+        ])->get('me', MeController::class)->name('me');
+    });
+});

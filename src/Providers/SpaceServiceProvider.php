@@ -30,5 +30,6 @@ class SpaceServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/space.php', 'space');
 
         $this->app->register(FortifyServiceProvider::class);
+        $this->app->register(SocialiteServiceProvider::class);
     }
 }

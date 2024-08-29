@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Dex\Laravel\Space\Extensions\Socialite\SocialCallbackController;
+use Dex\Laravel\Space\Extensions\Socialite\SocialRedirectController;
 use Dex\Laravel\Space\Http\Controllers\MeController;
 use Dex\Laravel\Space\Http\Controllers\SpaceController;
 use Dex\Laravel\Space\Http\Middleware\AcceptJson;
@@ -31,4 +33,7 @@ Route::group([
             config('fortify.auth_middleware') . ':' . config('fortify.guard'),
         ])->get('me', MeController::class)->name('me');
     });
+
+    Route::get('social/{provider}/redirect', SocialRedirectController::class)->name('social.redirect');
+    Route::get('social/{provider}/callback', SocialCallbackController::class)->name('social.callback');
 });

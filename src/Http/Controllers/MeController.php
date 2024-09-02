@@ -13,10 +13,9 @@ class MeController
         $user = config('space.user.model');
 
         $user = $user::query()
+            ->with('profiles.space')
             ->findOrFail($request->user()->getKey());
 
-        return array_merge($user->toArray(), [
-            'profiles' => [],
-        ]);
+        return $user->toArray();
     }
 }

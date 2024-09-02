@@ -6,15 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSpaceTable extends Migration
+class CreateProfileTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('space', function (Blueprint $table) {
-            $table->id();
+        Schema::create('profile', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignId('space_id');
+            $table->foreignId('user_id');
             $table->string('name');
-            $table->text('authorization');
-            $table->text('url');
+            $table->text('token');
+            $table->string('is_default')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -22,6 +24,6 @@ class CreateSpaceTable extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('space');
+        Schema::dropIfExists('profile');
     }
 }

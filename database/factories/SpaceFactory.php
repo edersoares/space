@@ -7,9 +7,6 @@ namespace Dex\Laravel\Space\Database\Factories;
 use Dex\Laravel\Space\Models\Space;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Space>
- */
 class SpaceFactory extends Factory
 {
     protected $model = Space::class;
@@ -17,7 +14,9 @@ class SpaceFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'name' => $this->faker->name(),
+            'authorization' => $this->faker->url(),
+            'url' => $this->faker->url(),
         ];
     }
 }

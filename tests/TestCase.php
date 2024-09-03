@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\FortifyServiceProvider;
 use Laravel\Socialite\SocialiteServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Orion\OrionServiceProvider;
 use Workbench\Dex\Laravel\Space\App\Providers\WorkbenchServiceProvider;
 
 class TestCase extends Orchestra
@@ -34,6 +35,7 @@ class TestCase extends Orchestra
     {
         return [
             FortifyServiceProvider::class,
+            OrionServiceProvider::class,
             SocialiteServiceProvider::class,
             SpaceServiceProvider::class,
             WorkbenchServiceProvider::class,

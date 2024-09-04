@@ -27,11 +27,12 @@ class EntityUserSeeder extends Seeder
         ], [
             'label' => 'ID',
             'column_name' => 'id',
-            'is_filterable' => false,
-            'is_searchable' => false,
-            'is_sortable' => false,
+            'is_filterable' => true,
+            'is_searchable' => true,
+            'is_sortable' => true,
             'is_includable' => false,
             'is_relation' => false,
+            'is_visible' => true,
             'rules' => [],
         ]);
 
@@ -46,6 +47,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => true,
             'is_includable' => false,
             'is_relation' => false,
+            'is_visible' => true,
             'rules' => ['required', 'min:3', 'max:100'],
         ]);
 
@@ -55,12 +57,13 @@ class EntityUserSeeder extends Seeder
         ], [
             'label' => 'E-mail',
             'column_name' => 'email',
-            'is_filterable' => false,
-            'is_searchable' => false,
-            'is_sortable' => false,
+            'is_filterable' => true,
+            'is_searchable' => true,
+            'is_sortable' => true,
             'is_includable' => false,
             'is_relation' => false,
-            'rules' => [],
+            'is_visible' => true,
+            'rules' => ['required'],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -74,6 +77,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'is_visible' => true,
             'rules' => [],
         ]);
 
@@ -88,7 +92,8 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
-            'rules' => [],
+            'is_visible' => false,
+            'rules' => ['required', 'min:8', 'max:128'],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -102,6 +107,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'is_visible' => false,
             'rules' => [],
         ]);
     }

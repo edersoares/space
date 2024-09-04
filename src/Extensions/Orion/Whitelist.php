@@ -53,7 +53,7 @@ trait Whitelist
      */
     public function scopedFilters(): array
     {
-        return [];
+        return []; // @codeCoverageIgnore
     }
 
     /**

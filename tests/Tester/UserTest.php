@@ -18,7 +18,11 @@ describe(User::class, function () {
     test()->toBeDelete();
     test()->toHaveHasManyRelation(Profile::class, 'profiles');
 
-    beforeEach()->wrap('data')->endpoint('/api/user');
+    beforeEach()
+        ->seed(EntityUserSeeder::class)
+        ->wrap('data')
+        ->endpoint('/api/user')
+        ->transformPayload(fn ($payload) => collect($payload)->put('password', 'password')->all());
 
     test()->toHaveIndexEndpoint();
     test()->toHaveShowEndpoint();
@@ -26,15 +30,13 @@ describe(User::class, function () {
     test()->toHaveUpdateEndpoint();
     test()->toHaveDestroyEndpoint();
 
-    test()
-        ->seed(EntityUserSeeder::class)
-        ->toValidateRequired('name');
-    test()
-        ->seed(EntityUserSeeder::class)
-        ->toValidateMin('name', 3);
-    test()
-        ->seed(EntityUserSeeder::class)
-        ->toValidateMax('name', 100);
+    test()->toValidateRequired('name');
+    test()->toValidateMin('name', 3);
+    test()->toValidateMax('name', 100);
+    test()->toValidateRequired('email');
+    test()->toValidateRequired('password');
+    test()->toValidateMin('password', 8);
+    test()->toValidateMax('password', 128);
 
     test('do `filter` request')
         ->endpoint('/api/user?filter=name:is(Luke)+or+name:is(Leia)')
@@ -43,7 +45,6 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
-        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [
@@ -59,7 +60,6 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
-        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [
@@ -70,7 +70,6 @@ describe(User::class, function () {
     test('do `show` request')
         ->endpoint('/api/user?show=2')
         ->factory(fn (Factory $factory) => $factory->count(3))
-        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJsonCount(2, 'data');
 
@@ -81,7 +80,6 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
-        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [

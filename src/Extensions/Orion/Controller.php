@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dex\Laravel\Space\Extensions\Orion;
 
 use Orion\Http\Controllers\Controller as OrionController;
-use Orion\Http\Requests\Request;
+use Orion\Http\Requests\Request as OrionRequest;
 
 class Controller extends OrionController
 {
@@ -13,7 +13,9 @@ class Controller extends OrionController
     use FluentQuery;
     use Whitelist;
 
-    public function index(Request $request)
+    protected $request = Request::class;
+
+    public function index(OrionRequest $request)
     {
         $this->setFilterQuery($request);
         $this->setSearchQuery($request);

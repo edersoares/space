@@ -32,6 +32,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => [],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -45,6 +46,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => true,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => ['required', 'min:3', 'max:100'],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -58,6 +60,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => [],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -71,6 +74,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => [],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -84,6 +88,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => [],
         ]);
 
         Attribute::query()->updateOrCreate([
@@ -97,6 +102,7 @@ class EntityUserSeeder extends Seeder
             'is_sortable' => false,
             'is_includable' => false,
             'is_relation' => false,
+            'rules' => [],
         ]);
     }
 }

@@ -26,6 +26,16 @@ describe(User::class, function () {
     test()->toHaveUpdateEndpoint();
     test()->toHaveDestroyEndpoint();
 
+    test()
+        ->seed(EntityUserSeeder::class)
+        ->toValidateRequired('name');
+    test()
+        ->seed(EntityUserSeeder::class)
+        ->toValidateMin('name', 3);
+    test()
+        ->seed(EntityUserSeeder::class)
+        ->toValidateMax('name', 100);
+
     test('do `filter` request')
         ->endpoint('/api/user?filter=name:is(Luke)+or+name:is(Leia)')
         ->factory(fn (Factory $factory) => $factory->count(3)->sequence(

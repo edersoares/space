@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $is_sortable Se o atributo pode ser usado para ordenação
  * @property bool $is_includable Se o atributo pode ser usado para incluir uma relação
  * @property bool $is_relation Se o atributo é uma relação
+ * @property array $rules Regras de validação
  * @property DateTime $created_at
  * @property DateTime $updated_at
  *
@@ -41,7 +42,10 @@ class Attribute extends Model
         'is_sortable',
         'is_includable',
         'is_relation',
+        'rules',
     ];
+
+    protected $casts = ['rules' => 'json'];
 
     /**
      * @return BelongsTo<Entity, self>

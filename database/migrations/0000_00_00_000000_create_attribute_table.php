@@ -21,6 +21,7 @@ class CreateAttributeTable extends Migration
             $table->boolean('is_sortable')->default(false);
             $table->boolean('is_includable')->default(false);
             $table->boolean('is_relation')->default(false);
+            $table->json('rules')->nullable();
             $table->timestamps();
         });
     }

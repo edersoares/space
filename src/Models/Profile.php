@@ -4,11 +4,26 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Space\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property string $id
+ * @property int $space_id
+ * @property int $user_id
+ * @property string $name
+ * @property string $token
+ * @property bool $is_default
+ * @property DateTime $created_at
+ * @property DateTime $updated_at
+ * @property DateTime $softDeletes
+ *
+ * @property Space $space
+ * @property User $user
+ */
 class Profile extends Model
 {
     use HasFactory;

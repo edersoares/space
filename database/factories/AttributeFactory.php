@@ -16,7 +16,7 @@ class AttributeFactory extends Factory
     {
         return [
             'entity_id' => fn () => Entity::factory()->create(),
-            'name' => $this->faker->colorName(),
+            'label' => $this->faker->colorName(),
             'slug' => $this->faker->colorName(),
             'column_name' => $this->faker->colorName(),
         ];

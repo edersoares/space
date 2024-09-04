@@ -13,7 +13,7 @@ class CreateAttributeTable extends Migration
         Schema::create('attribute', function (Blueprint $table) {
             $table->id();
             $table->foreignId('entity_id');
-            $table->string('name');
+            $table->string('label');
             $table->string('slug');
             $table->string('column_name');
             $table->boolean('is_filterable')->default(false);

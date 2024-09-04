@@ -4,10 +4,27 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Space\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int $id ID
+ * @property int $entity_id ID da entidade
+ * @property string $label Nome (label)
+ * @property string $slug Identificador (slug)
+ * @property string $column_name Nome da coluna do banco de dados
+ * @property bool $is_filterable Se o atributo pode ser usado em filtros
+ * @property bool $is_searchable Se o atributo pode ser usado em pesquisa
+ * @property bool $is_sortable Se o atributo pode ser usado para ordenação
+ * @property bool $is_includable Se o atributo pode ser usado para incluir uma relação
+ * @property bool $is_relation Se o atributo é uma relação
+ * @property DateTime $created_at
+ * @property DateTime $updated_at
+ *
+ * @property Entity $entity
+ */
 class Attribute extends Model
 {
     use HasFactory;
@@ -16,7 +33,7 @@ class Attribute extends Model
 
     protected $fillable = [
         'entity_id',
-        'name',
+        'label',
         'slug',
         'column_name',
         'is_filterable',

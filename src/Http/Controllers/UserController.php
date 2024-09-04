@@ -13,25 +13,4 @@ class UserController extends Controller
     use DisableAuthorization;
 
     protected $model = User::class;
-
-    public function filterableBy(): array
-    {
-        return [
-            'name',
-        ];
-    }
-
-    public function searchableBy(): array
-    {
-        return [
-            'name',
-        ];
-    }
-
-    public function sortableBy(): array
-    {
-        return [
-            'name',
-        ];
-    }
 }

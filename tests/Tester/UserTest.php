@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Dex\Laravel\Space\Database\Seeders\EntityUserSeeder;
 use Dex\Laravel\Space\Models\Profile;
 use Dex\Laravel\Space\Models\User;
 use Dex\Pest\Plugin\Laravel\Tester\Tester;
@@ -32,6 +33,7 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
+        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [
@@ -47,6 +49,7 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
+        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [
@@ -57,6 +60,7 @@ describe(User::class, function () {
     test('do `show` request')
         ->endpoint('/api/user?show=2')
         ->factory(fn (Factory $factory) => $factory->count(3))
+        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJsonCount(2, 'data');
 
@@ -67,6 +71,7 @@ describe(User::class, function () {
             ['name' => 'Leia'],
             ['name' => 'Luke'],
         ))
+        ->seed(EntityUserSeeder::class)
         ->doGetRequest()
         ->assertJson([
             'data' => [

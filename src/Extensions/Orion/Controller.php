@@ -11,6 +11,7 @@ class Controller extends OrionController
 {
     use Cast;
     use FluentQuery;
+    use Whitelist;
 
     public function index(Request $request)
     {

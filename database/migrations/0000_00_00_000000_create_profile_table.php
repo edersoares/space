@@ -16,7 +16,7 @@ class CreateProfileTable extends Migration
             $table->foreignId('user_id');
             $table->string('name');
             $table->text('token');
-            $table->string('is_default')->default(false);
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

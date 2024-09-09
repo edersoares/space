@@ -11,6 +11,7 @@ class CreateUserSocialTable extends Migration
     public function up(): void
     {
         Schema::create('user_social', function (Blueprint $table) {
+            $table->id();
             $table->string('provider')->index();
             $table->string('provider_id')->index();
             $table->string('user_id')->index();

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Dex\Laravel\Space\Extensions\Orion\Cast;
 
-describe(Cast::class, function () {
+describe('Cast', function () {
     $cast = new class {
         use Cast;
     };
@@ -386,4 +386,10 @@ describe(Cast::class, function () {
             ],
         ]);
     });
+});
+
+describe('Controller', function () {
+    test()->post('/api/demo', [
+        'name' => 'Demo',
+    ])->assertCreated();
 });

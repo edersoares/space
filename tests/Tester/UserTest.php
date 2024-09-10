@@ -22,7 +22,7 @@ describe(User::class, function () {
         ->seed(EntityUserSeeder::class)
         ->wrap('data')
         ->endpoint('/api/user')
-        ->transformPayload(fn ($payload) => collect($payload)->put('password', 'password')->all());
+        ->transformPayload(fn ($payload) => collect($payload)->put('password', 'password')->put('password_confirmation', 'password')->all());
 
     test()->toHaveIndexEndpoint();
     test()->toHaveShowEndpoint();

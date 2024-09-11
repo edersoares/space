@@ -10,16 +10,18 @@ class UserRequest extends Request
     {
         return [
             'name' => ['required', 'min:3', 'max:100'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:user'],
             'password' => ['required', 'min:8', 'max:128'],
         ];
     }
 
     public function updateRules(): array
     {
+        $id = $this->route()->parameter('user');
+
         return [
             'name' => ['required', 'min:3', 'max:100'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', "unique:user,email,$id,id"],
         ];
     }
 }

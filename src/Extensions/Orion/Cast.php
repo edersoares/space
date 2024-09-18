@@ -91,6 +91,12 @@ trait Cast
 
         [, $field, $operator, $value] = $data;
 
+        $value = match ($operator) {
+            'in', 'not in' => str($value)->explode(',')->toArray(),
+            'search' => str($value)->append('%')->prepend('%')->value(),
+            default => $value,
+        };
+
         $operator = match ($operator) {
             'is', 'eq', 'equals' => '=', // equal
             'no', 'neq', 'not-equals' => '!=', // not equal
@@ -98,16 +104,11 @@ trait Cast
             'lte' => '<=', // less than or equal
             'gt' => '>', // greater than
             'gte' => '>=', // greater than or equal
-            'like' => 'like', // like
+            'like', 'search' => 'like', // like
             'not-like' => 'not like', // not like
             'in' => 'in', // in
             'not-in' => 'not in', // not in
             default => throw new DomainException("Unknown operator '$operator'"),
-        };
-
-        $value = match ($operator) {
-            'in', 'not in' => str($value)->explode(',')->toArray(),
-            default => $value,
         };
 
         $field = $replaceable[$field] ?? $field;

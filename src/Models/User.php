@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int $id ID
@@ -28,6 +29,7 @@ class User extends Authenticable
 {
     use HasApiTokens;
     use HasFactory;
+    use HasRoles;
     use Notifiable;
 
     protected $table = 'user';
@@ -44,5 +46,10 @@ class User extends Authenticable
     public function profiles(): HasMany
     {
         return $this->hasMany(Profile::class);
+    }
+
+    protected function getDefaultGuardName(): string
+    {
+        return 'api';
     }
 }

@@ -17,6 +17,13 @@ class UserController extends Controller
 
     protected $request = UserRequest::class;
 
+    public function filterableBy(): array
+    {
+        return [
+            'id', 'name',
+        ];
+    }
+
     public function searchableBy(): array
     {
         return [

@@ -17,6 +17,13 @@ class SpaceController extends Controller
 
     protected $request = SpaceRequest::class;
 
+    public function filterableBy(): array
+    {
+        return [
+            'id', 'name',
+        ];
+    }
+
     public function searchableBy(): array
     {
         return [

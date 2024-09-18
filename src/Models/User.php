@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * @property int $id ID
@@ -25,6 +26,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticable
 {
+    use HasApiTokens;
     use HasFactory;
     use Notifiable;
 

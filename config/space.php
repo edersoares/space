@@ -8,6 +8,10 @@ return [
 
         'authentication' => [
             'url' => env('SPACE_AUTHENTICATION_URL'),
+
+            'social' => [
+                'github' => env('GITHUB_CLIENT_ID') && env('GITHUB_CLIENT_SECRET'),
+            ],
         ],
 
     ],

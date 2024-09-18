@@ -4,10 +4,30 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Space\Http\Controllers;
 
-class SpaceController
+use Dex\Laravel\Space\Extensions\Orion\Controller;
+use Dex\Laravel\Space\Http\Requests\SpaceRequest;
+use Dex\Laravel\Space\Models\Space;
+use Orion\Concerns\DisableAuthorization;
+
+class SpaceController extends Controller
 {
-    public function __invoke(): string
+    use DisableAuthorization;
+
+    protected $model = Space::class;
+
+    protected $request = SpaceRequest::class;
+
+    public function searchableBy(): array
     {
-        return 'Space for new ideas';
+        return [
+            'name',
+        ];
+    }
+
+    public function sortableBy(): array
+    {
+        return [
+            'id', 'name', 'url',
+        ];
     }
 }

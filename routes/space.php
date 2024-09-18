@@ -6,11 +6,8 @@ use Dex\Laravel\Space\Extensions\Socialite\SocialCallbackController;
 use Dex\Laravel\Space\Extensions\Socialite\SocialRedirectController;
 use Dex\Laravel\Space\Http\Controllers\AuthorizationController;
 use Dex\Laravel\Space\Http\Controllers\MeController;
-use Dex\Laravel\Space\Http\Controllers\SpaceController;
 use Dex\Laravel\Space\Http\Middleware\AcceptJson;
 use Illuminate\Support\Facades\Route;
-
-Route::get('space', SpaceController::class);
 
 Route::group([
     'middleware' => config('fortify.middleware'),

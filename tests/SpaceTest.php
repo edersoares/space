@@ -10,12 +10,6 @@ test('command exists', function () {
         ->assertSuccessful();
 });
 
-test('route exists', function () {
-    $this->get('space')
-        ->assertSee('Space for new ideas')
-        ->assertOk();
-});
-
 test('database table is empty', function () {
     $this->assertDatabaseEmpty(Space::class);
 });

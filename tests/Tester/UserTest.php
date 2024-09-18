@@ -7,6 +7,7 @@ use Dex\Laravel\Space\Models\Profile;
 use Dex\Laravel\Space\Models\User;
 use Dex\Pest\Plugin\Laravel\Tester\Tester;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Laravel\Passport\Passport;
 
 uses(Tester::class);
 
@@ -23,6 +24,10 @@ describe(User::class, function () {
         ->wrap('data')
         ->endpoint('/api/user')
         ->transformPayload(fn ($payload) => collect($payload)->put('password', 'password')->put('password_confirmation', 'password')->all());
+
+    beforeEach(function () {
+        Passport::actingAs(User::factory()->make());
+    });
 
     test()->toHaveIndexEndpoint();
     test()->toHaveShowEndpoint();

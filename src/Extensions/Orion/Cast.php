@@ -92,7 +92,6 @@ trait Cast
         [, $field, $operator, $value] = $data;
 
         $value = match ($operator) {
-            'in', 'not in' => str($value)->explode(',')->toArray(),
             'search' => str($value)->append('%')->prepend('%')->value(),
             default => $value,
         };
@@ -109,6 +108,11 @@ trait Cast
             'in' => 'in', // in
             'not-in' => 'not in', // not in
             default => throw new DomainException("Unknown operator '$operator'"),
+        };
+
+        $value = match ($operator) {
+            'in', 'not in' => str($value)->explode(',')->toArray(),
+            default => $value,
         };
 
         $field = $replaceable[$field] ?? $field;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Workbench\Dex\Laravel\Space\App\Http\Controllers;
 
 use Dex\Laravel\Space\Extensions\Orion\Controller;

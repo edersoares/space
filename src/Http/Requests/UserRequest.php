@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dex\Laravel\Space\Http\Requests;
 
 use Dex\Laravel\Space\Extensions\Orion\Request;

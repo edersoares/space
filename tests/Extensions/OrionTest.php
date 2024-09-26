@@ -167,7 +167,7 @@ describe('Cast', function () {
             'operator' => 'not in',
             'value' => ['1', '2', '3'],
         ]);
-    })->only();
+    });
 
     test('parse `name:is(dex) name:is(framework)`', function () use ($cast) {
         expect($cast->parse('name:is(dex) name:is(framework)'))->toBe([

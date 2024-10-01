@@ -12,8 +12,8 @@ class CreateProfileTable extends Migration
     {
         Schema::create('profile', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('space_id');
-            $table->foreignId('user_id');
+            $table->foreignUuid('space_id');
+            $table->foreignUuid('user_id');
             $table->string('name');
             $table->text('token');
             $table->boolean('is_default')->default(false);

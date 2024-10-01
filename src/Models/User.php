@@ -6,6 +6,7 @@ namespace Dex\Laravel\Space\Models;
 
 use DateTime;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticable;
@@ -30,6 +31,7 @@ class User extends Authenticable
     use HasApiTokens;
     use HasFactory;
     use HasRoles;
+    use HasUuids;
     use Notifiable;
 
     protected $table = 'user';

@@ -11,7 +11,7 @@ class CreateSpaceTable extends Migration
     public function up(): void
     {
         Schema::create('space', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->text('authorization');
             $table->text('url');

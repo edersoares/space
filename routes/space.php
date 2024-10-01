@@ -6,6 +6,7 @@ use Dex\Laravel\Space\Extensions\Socialite\SocialCallbackController;
 use Dex\Laravel\Space\Extensions\Socialite\SocialRedirectController;
 use Dex\Laravel\Space\Http\Controllers\AuthorizationController;
 use Dex\Laravel\Space\Http\Controllers\MeController;
+use Dex\Laravel\Space\Http\Controllers\SetDefaultProfileController;
 use Dex\Laravel\Space\Http\Middleware\AcceptJson;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::group([
         Route::middleware([
             config('fortify.auth_middleware') . ':' . config('fortify.guard'),
         ])->get('me', MeController::class)->name('me');
+
+        Route::middleware([
+            config('fortify.auth_middleware') . ':' . config('fortify.guard'),
+        ])->put('user/set-default-profile', SetDefaultProfileController::class);
     });
 
     Route::get('authorization', AuthorizationController::class)->name('authorization');

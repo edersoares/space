@@ -8,6 +8,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -26,4 +27,13 @@ class Space extends Model
     protected $table = 'space';
 
     protected $fillable = ['name', 'authorization', 'url'];
+
+    protected $casts = [
+        'additional' => 'json',
+    ];
+
+    public function profiles(): HasMany
+    {
+        return $this->hasMany(Profile::class);
+    }
 }

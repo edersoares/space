@@ -15,6 +15,7 @@ class CreateSpaceTable extends Migration
             $table->string('name');
             $table->text('authorization');
             $table->text('url');
+            $table->json('additional')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -12,9 +12,9 @@ class CreateUserSocialTable extends Migration
     {
         Schema::create('user_social', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('provider')->index();
+            $table->uuid('user_id');
             $table->string('provider_id')->index();
-            $table->foreignUuid('user_id');
+            $table->string('provider')->index();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('nickname')->nullable();

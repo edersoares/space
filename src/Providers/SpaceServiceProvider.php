@@ -33,6 +33,7 @@ class SpaceServiceProvider extends ServiceProvider
         $this->app->register(FortifyServiceProvider::class);
         $this->app->register(OrionServiceProvider::class);
         $this->app->register(PassportServiceProvider::class);
+        $this->app->register(PermissionServiceProvider::class);
         $this->app->register(SocialiteServiceProvider::class);
     }
 }

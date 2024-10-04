@@ -26,7 +26,7 @@ class Space extends Model
 
     protected $table = 'space';
 
-    protected $fillable = ['name', 'authorization', 'url'];
+    protected $fillable = ['name', 'authorization', 'url', 'additional'];
 
     protected $casts = [
         'additional' => 'json',

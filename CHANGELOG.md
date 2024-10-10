@@ -2,6 +2,10 @@
 
 All notable changes to `space` will be documented in this file.
 
+## 0.5.0 - 2024-10-10
+
+**Full Changelog**: https://github.com/edersoares/space/compare/0.4.0...0.5.0
+
 ## 0.4.0 - 2024-10-10
 
 **Full Changelog**: https://github.com/edersoares/space/compare/0.3.3...0.4.0

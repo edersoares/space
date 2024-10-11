@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Space\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use SocialiteProviders\Manager\SocialiteWasCalled;
-use SocialiteProviders\Microsoft\Provider;
 
 class SocialiteServiceProvider extends ServiceProvider
 {
@@ -22,12 +19,5 @@ class SocialiteServiceProvider extends ServiceProvider
                 (array) config('space.socialite.providers')
             ),
         ]);
-    }
-
-    public function boot(): void
-    {
-        Event::listen(function (SocialiteWasCalled $event) {
-            $event->extendSocialite('microsoft', Provider::class);
-        });
     }
 }

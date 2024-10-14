@@ -10,6 +10,7 @@ return [
             'url' => env('SPACE_AUTHENTICATION_URL'),
 
             'social' => [
+                'facebook' => env('FACEBOOK_CLIENT_ID') && env('FACEBOOK_CLIENT_SECRET'),
                 'github' => env('GITHUB_CLIENT_ID') && env('GITHUB_CLIENT_SECRET'),
                 'google' => env('GOOGLE_CLIENT_ID') && env('GOOGLE_CLIENT_SECRET'),
             ],
@@ -34,6 +35,12 @@ return [
     'socialite' => [
 
         'providers' => [
+
+            'facebook' => [
+                'client_id' => env('FACEBOOK_CLIENT_ID'),
+                'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+                'redirect' => env('FACEBOOK_REDIRECT_URL'),
+            ],
 
             'github' => [
                 'client_id' => env('GITHUB_CLIENT_ID'),

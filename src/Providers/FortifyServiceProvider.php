@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dex\Laravel\Space\Providers;
 
 use Dex\Laravel\Space\Extensions\Fortify\CreateNewUser;
+use Dex\Laravel\Space\Extensions\Fortify\LoginResponse;
 use Dex\Laravel\Space\Extensions\Fortify\ResetUserPassword;
 use Dex\Laravel\Space\Extensions\Fortify\UpdateUserPassword;
 use Dex\Laravel\Space\Extensions\Fortify\UpdateUserProfileInformation;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
@@ -73,5 +75,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         ResetPassword::createUrlUsing(fn ($user, $token) => config('space.fortify.password-reset') . "?token=$token&email={$user->getEmailForPasswordReset()}");
+
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
     }
 }

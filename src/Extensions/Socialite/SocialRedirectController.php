@@ -11,8 +11,6 @@ class SocialRedirectController
 {
     public function __invoke(string $provider): RedirectResponse
     {
-        session()->put('url.intended', request('intended'));
-
         return Socialite::driver($provider)->redirect();
     }
 }

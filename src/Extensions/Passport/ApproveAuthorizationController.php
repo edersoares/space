@@ -22,15 +22,11 @@ class ApproveAuthorizationController extends Passport
     {
         $client = $request->string('client_id');
 
-        if ($client->isEmpty()) {
-            return;
-        }
-
         $space = Space::query()
             ->where('client_id', $client->value())
             ->first();
 
-        if (empty($space)) {
+        if (empty($space) || $client->isEmpty()) {
             return;
         }
 

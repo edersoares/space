@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dex\Laravel\Space\Extensions\Passport;
 
 use Dex\Laravel\Space\Models\Profile;

@@ -21,14 +21,14 @@ class UserProfileController extends RelationController
 
     protected $relation = 'profiles';
 
-    public function index(Request $request, $parentKey)
+    public function index(Request $request, ...$args)
     {
         $this->setFilterQuery($request);
         $this->setSearchQuery($request);
         $this->setShowQuery($request);
         $this->setSortQuery($request);
 
-        return parent::index($request, $parentKey);
+        return parent::index($request, $args);
     }
 
     public function alwaysIncludes(): array

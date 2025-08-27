@@ -43,23 +43,43 @@ class SpaceServiceProvider extends ServiceProvider
 
     private function schema(): void
     {
+        Schema::macro('isPostgres', function () {
+            return Schema::getConnection()->getDriverName() !== 'pgsql';
+        });
+
         Schema::macro('createIndexUsingGin', function (string $table, string $column) {
+            if (Schema::isPostgres() === false) {
+                return;
+            }
+
             $index = "{$table}_{$column}_gin_index";
 
             DB::statement("CREATE INDEX $index ON \"$table\" USING gin ($column gin_trgm_ops);");
         });
 
         Schema::macro('dropIndexUsingGin', function (string $table, string $column) {
+            if (Schema::isPostgres() === false) {
+                return;
+            }
+
             $index = "{$table}_{$column}_gin_index";
 
             DB::statement("DROP INDEX IF EXISTS $index;");
         });
 
         Schema::macro('createExtension', function (string $extension) {
+            if (Schema::isPostgres() === false) {
+                return;
+            }
+
             DB::statement("CREATE EXTENSION IF NOT EXISTS $extension;");
         });
 
         Schema::macro('dropExtension', function (string $extension) {
+            if (Schema::isPostgres() === false) {
+                return;
+            }
+
             DB::statement("DROP EXTENSION IF EXISTS $extension;");
         });
     }

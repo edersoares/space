@@ -27,14 +27,14 @@ class UserController extends Controller
     public function searchableBy(): array
     {
         return [
-            'name',
+            'searchable',
         ];
     }
 
     public function sortableBy(): array
     {
         return [
-            'id', 'name', 'email',
+            'id', 'name', 'email', 'searchable',
         ];
     }
 }

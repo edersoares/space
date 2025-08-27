@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dex\Laravel\Space\Models;
 
 use DateTime;
+use Dex\Laravel\Space\Extensions\Searchable\Searchable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -33,6 +34,7 @@ class User extends Authenticable
     use HasRoles;
     use HasUuids;
     use Notifiable;
+    use Searchable;
 
     protected $table = 'user';
 
@@ -41,6 +43,11 @@ class User extends Authenticable
     protected $hidden = ['password', 'remember_token'];
 
     protected $casts = ['email_verified_at' => 'datetime', 'password' => 'hashed'];
+
+    protected function searchableBy(): array
+    {
+        return ['name', 'email'];
+    }
 
     /**
      * @return HasMany<Profile>

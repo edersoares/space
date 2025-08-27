@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Space\Providers;
 
+use Dex\Laravel\Space\Console\Commands\SearchableCommand;
 use Dex\Laravel\Space\Console\Commands\SpaceCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class SpaceServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                SearchableCommand::class,
                 SpaceCommand::class,
             ]);
 

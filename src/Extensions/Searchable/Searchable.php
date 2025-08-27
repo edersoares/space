@@ -23,7 +23,7 @@ trait Searchable
         return 'searchable';
     }
 
-    protected function searchableTransform(Model $model): string
+    public function searchableValue(Model $model): string
     {
         $attributes = $model->only($this->searchableBy());
         $searchable = implode(' ', $attributes);
@@ -37,7 +37,7 @@ trait Searchable
             /** @var Searchable $searchable */
             $searchable = $model;
 
-            $model->{$searchable->searchableKey()} = $searchable->searchableTransform($model);
+            $model->{$searchable->searchableKey()} = $searchable->searchableValue($model);
         });
     }
 }

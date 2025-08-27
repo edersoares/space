@@ -44,7 +44,7 @@ class SpaceServiceProvider extends ServiceProvider
     private function schema(): void
     {
         Schema::macro('isPostgres', function () {
-            return Schema::getConnection()->getDriverName() !== 'pgsql';
+            return Schema::getConnection()->getDriverName() === 'pgsql';
         });
 
         Schema::macro('createIndexUsingGin', function (string $table, string $column) {

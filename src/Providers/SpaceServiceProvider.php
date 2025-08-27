@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Dex\Laravel\Space\Providers;
 
 use Dex\Laravel\Space\Console\Commands\SpaceCommand;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class SpaceServiceProvider extends ServiceProvider
@@ -23,6 +25,8 @@ class SpaceServiceProvider extends ServiceProvider
             $this->loadMigrationsFrom([
                 __DIR__ . '/../../database/migrations',
             ]);
+
+            $this->schema();
         }
     }
 
@@ -35,5 +39,28 @@ class SpaceServiceProvider extends ServiceProvider
         $this->app->register(PassportServiceProvider::class);
         $this->app->register(PermissionServiceProvider::class);
         $this->app->register(SocialiteServiceProvider::class);
+    }
+
+    private function schema(): void
+    {
+        Schema::macro('createIndexUsingGin', function (string $table, string $column) {
+            $index = "{$table}_{$column}_gin_index";
+
+            DB::statement("CREATE INDEX $index ON \"$table\" USING gin ($column gin_trgm_ops);");
+        });
+
+        Schema::macro('dropIndexUsingGin', function (string $table, string $column) {
+            $index = "{$table}_{$column}_gin_index";
+
+            DB::statement("DROP INDEX IF EXISTS $index;");
+        });
+
+        Schema::macro('createExtension', function (string $extension) {
+            DB::statement("CREATE EXTENSION IF NOT EXISTS $extension;");
+        });
+
+        Schema::macro('dropExtension', function (string $extension) {
+            DB::statement("DROP EXTENSION IF EXISTS $extension;");
+        });
     }
 }

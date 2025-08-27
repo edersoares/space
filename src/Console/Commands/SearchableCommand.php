@@ -26,7 +26,7 @@ class SearchableCommand extends Command
 
         $traits = class_uses_recursive($class);
 
-        if (false === in_array(Searchable::class, $traits)) {
+        if (false === in_array(Searchable::class, $traits, true)) {
             $this->error("Model [$class] does not implement [Searchable] trait");
 
             return self::INVALID;

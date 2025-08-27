@@ -14,12 +14,12 @@ class AddSearchableColumnInUserTable extends Migration
             $table->string('searchable')->default('')->after('email');
         });
 
-        Schema::createIndexUsingGin('user', 'searchable');;
+        Schema::createIndexUsingGin('user', 'searchable');
     }
 
     public function down(): void
     {
-        Schema::dropIndexUsingGin('user', 'searchable');;
+        Schema::dropIndexUsingGin('user', 'searchable');
 
         Schema::table('user', function (Blueprint $table) {
             $table->dropColumn('searchable');

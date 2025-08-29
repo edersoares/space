@@ -20,21 +20,21 @@ class SpaceController extends Controller
     public function filterableBy(): array
     {
         return [
-            'id', 'name',
+            'id', 'name', 'searchable',
         ];
     }
 
     public function searchableBy(): array
     {
         return [
-            'name',
+            'searchable',
         ];
     }
 
     public function sortableBy(): array
     {
         return [
-            'id', 'name', 'url',
+            'id', 'name', 'url', 'searchable',
         ];
     }
 }

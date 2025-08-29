@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dex\Laravel\Space\Models;
 
 use DateTime;
+use Dex\Laravel\Space\Extensions\Searchable\Searchable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,7 @@ class Space extends Model
 {
     use HasFactory;
     use HasUuids;
+    use Searchable;
 
     protected $table = 'space';
 
@@ -31,6 +33,11 @@ class Space extends Model
     protected $casts = [
         'additional' => 'json',
     ];
+
+    public function searchableBy(): array
+    {
+        return ['name'];
+    }
 
     public function profiles(): HasMany
     {

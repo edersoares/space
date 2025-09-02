@@ -35,9 +35,11 @@ Route::group([
         Route::middleware([
             config('fortify.auth_middleware') . ':' . config('fortify.guard'),
         ])->put('user/set-default-profile', SetDefaultProfileController::class);
-    });
 
-    Route::get('authorization', AuthorizationController::class)->name('authorization');
+        Route::middleware([
+            config('fortify.auth_middleware') . ':' . config('fortify.guard'),
+        ])->get('authorization', AuthorizationController::class)->name('authorization');
+    });
 
     Route::get('social/{provider}/redirect', SocialRedirectController::class)->name('social.redirect');
     Route::get('social/{provider}/callback', SocialCallbackController::class)->name('social.callback');

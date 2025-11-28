@@ -20,7 +20,7 @@
         "illuminate/contracts": "^10|^11|^12",
         "illuminate/support": "^10|^11|^12",
         "laravel/fortify": "^1.24",
-        "laravel/passport": "^12.3",
+        "laravel/passport": "^13.4",
         "laravel/socialite": "^5.15",
         "spatie/laravel-permission": "^6.9",
         "tailflow/laravel-orion": "^2.22"

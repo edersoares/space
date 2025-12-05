@@ -12,7 +12,7 @@ class SocialRedirectController
 {
     public function __invoke(Request $request, string $provider): RedirectResponse
     {
-        if ($request->has('intended')) {
+        if ($request->has('intended') && !$request->session()->has('url.intended')) {
             $request->session()->put('url.intended', $request->get('intended'));
         }
 

@@ -37,4 +37,9 @@ class SpaceController extends Controller
             'id', 'name', 'url', 'searchable',
         ];
     }
+
+    public function limit(): int
+    {
+        return 250;
+    }
 }
